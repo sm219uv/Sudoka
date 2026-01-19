@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Sudoka - Sudoku Game</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Classic Sudoku puzzle game with multiple difficulty levels. Perfect for brain training!">
+    <meta name="theme-color" content="#667eea">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Sudoka">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Confetti library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+    <!-- ==================== MENU SCREEN ==================== -->
+    <div id="menu-screen" class="screen">
+        <div class="container menu-container">
+            <header>
+                <h1>🎮 Sudoka</h1>
+            </header>
+
+            <!-- SUPPORT BANNER -->
+            <div class="support-banner" id="support-banner">
+                <button class="support-close" id="close-support">×</button>
+                <div class="support-content">
+                    <span class="support-icon">☕</span>
+                    <div class="support-text">
+                        <strong>Enjoy Sudoka?</strong>
+                        <p>Support the developer!</p>
+                    </div>
+                    <a href="https://buymeacoffee.com/yourusername" target="_blank" class="support-btn">
+                        Support
+                    </a>
+                </div>
+            </div>
+
+            <!-- DIFFICULTY SELECT -->
+            <div class="difficulty-select">
+                <h2>Choose Difficulty</h2>
+                
+                <button class="difficulty-btn" data-difficulty="easy">
+                    <span class="diff-icon">😊</span>
+                    <span class="diff-name">Easy</span>
+                    <span class="diff-desc">For Beginners</span>
+                </button>
+                
+                <button class="difficulty-btn" data-difficulty="medium">
+                    <span class="diff-icon">🤔</span>
+                    <span class="diff-name">Medium</span>
+                    <span class="diff-desc">For Intermediates</span>
+                </button>
+                
+                <button class="difficulty-btn" data-difficulty="hard">
+                    <span class="diff-icon">😈</span>
+                    <span class="diff-name">Hard</span>
+                    <span class="diff-desc">For Experts</span>
+                </button>
+            </div>
+
+            <!-- CONTINUE GAME -->
+            <div id="continue-section" class="continue-section" style="display: none;">
+                <button id="continue-btn" class="continue-btn">
+                    ▶️ Continue Game
+                </button>
+            </div>
+
+            <!-- LEADERBOARD -->
+            <div class="leaderboard">
+                <h2>🏆 Best Times</h2>
+                <div class="leaderboard-list">
+                    <div class="leaderboard-item">
+                        <span class="lb-difficulty">😊 easy</span>
+                        <span class="lb-time" id="best-easy">--:--</span>
+                    </div>
+                    <div class="leaderboard-item">
+                        <span class="lb-difficulty">🤔 medium</span>
+                        <span class="lb-time" id="best-medium">--:--</span>
+                    </div>
+                    <div class="leaderboard-item">
+                        <span class="lb-difficulty">😈 hard</span>
+                        <span class="lb-time" id="best-hard">--:--</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer s Privacy Policy -->
+            <footer class="menu-footer">
+                <a href="privacy.html" class="privacy-link">🔒 Privacy Policy</a>
+            </footer>
+        </div>
+    </div>
+
+    <!-- ==================== GAME SCREEN ==================== -->
+    <div id="game-screen" class="screen" style="display: none;">
+        <div class="container game-container">
+            
+            <!-- GAME HEADER s tlačidlom späť -->
+            <header class="game-header">
+                <button id="back-btn" class="back-btn">← Back</button>
+                <h1>Sudoku</h1>
+                <span id="current-difficulty" class="current-difficulty">Easy</span>
+            </header>
+
+            <!-- TIMER A CHYBY -->
+            <div class="game-stats">
+                <div class="stat">
+                    <span class="stat-icon">⏱️</span>
+                    <span id="timer-display">00:00</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-icon">❌</span>
+                    <span id="mistake-display">0/3</span>
+                </div>
+            </div>
+
+            <!-- GAME CONTENT - grid for tablet/desktop layout -->
+            <div class="game-content">
+                <!-- HRACIA PLOCHA -->
+                <div class="game-board">
+                    <div id="sudoku-grid" class="sudoku-grid"></div>
+                </div>
+
+                <!-- GAME CONTROLS - na pravej strane pre tablet/desktop -->
+                <div class="game-controls">
+                    <!-- PENCIL MODE -->
+                    <div class="pencil-toggle">
+                        <button id="pencil-btn">✏️ Pencil: OFF</button>
+                    </div>
+
+                    <!-- NUMBER PAD -->
+                    <div class="number-pad">
+                        <button class="num-btn" data-num="1">1</button>
+                        <button class="num-btn" data-num="2">2</button>
+                        <button class="num-btn" data-num="3">3</button>
+                        <button class="num-btn" data-num="4">4</button>
+                        <button class="num-btn" data-num="5">5</button>
+                        <button class="num-btn" data-num="6">6</button>
+                        <button class="num-btn" data-num="7">7</button>
+                        <button class="num-btn" data-num="8">8</button>
+                        <button class="num-btn" data-num="9">9</button>
+                        <button class="num-btn erase-btn" data-num="0">✕</button>
+                    </div>
+
+                    <!-- ACTION BUTTONS -->
+                    <div class="actions">
+                        <button id="undo-btn">↩️ Undo</button>
+                        <button id="hint-btn">💡 Hint</button>
+                        <button id="give-up-btn">🏳️ Give Up</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/solver.js"></script>
+    <script src="js/generator.js"></script>
+    <script src="js/grid.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/main.js"></script>
+    
+    <!-- Register Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(reg => console.log('✅ Service Worker registered'))
+                    .catch(err => console.log('❌ SW registration failed:', err));
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,861 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* --- CELÉ TELO STRÁNKY --- */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* --- SCREEN SYSTEM --- */
+.screen {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* --- HLAVNÝ KONTAJNER --- */
+.container {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    max-width: 500px;
+    width: 100%;
+}
+
+/* --- MENU SCREEN --- */
+.menu-container header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.menu-container header h1 {
+    font-size: 3rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #667eea;
+    font-style: italic;
+}
+
+/* --- SUPPORT BANNER --- */
+.support-banner {
+    background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+    border: 2px solid #ffc107;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+    position: relative;
+    animation: slideDown 0.3s ease;
+}
+
+.support-banner.hidden {
+    display: none;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.support-close {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.support-close:hover {
+    color: #666;
+}
+
+.support-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.support-icon {
+    font-size: 2rem;
+}
+
+.support-text {
+    flex: 1;
+}
+
+.support-text strong {
+    display: block;
+    color: #333;
+    font-size: 1rem;
+}
+
+.support-text p {
+    margin: 0;
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.support-btn {
+    background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(255, 152, 0, 0.3);
+}
+
+.support-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
+}
+
+/* Výber obťažnosti */
+.difficulty-select {
+    margin-bottom: 25px;
+}
+
+.difficulty-select h2 {
+    text-align: center;
+    color: #555;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.difficulty-btn {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border: 2px solid #e0e0e0;
+    border-radius: 15px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.difficulty-btn:hover {
+    border-color: #667eea;
+    background: #f5f5ff;
+    transform: translateX(5px);
+}
+
+.diff-icon {
+    font-size: 2rem;
+    margin-right: 15px;
+}
+
+.diff-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.diff-desc {
+    margin-left: auto;
+    font-size: 0.9rem;
+    color: #888;
+}
+
+/* Pokračovať v hre */
+.continue-section {
+    margin-bottom: 25px;
+}
+
+.continue-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    background: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.continue-btn:hover {
+    background: #43a047;
+    transform: scale(1.02);
+}
+
+/* Leaderboard */
+.leaderboard {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.leaderboard h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.leaderboard-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.leaderboard-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.lb-difficulty {
+    font-size: 1rem;
+    color: #555;
+}
+
+.lb-time {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #667eea;
+    font-family: 'Courier New', monospace;
+}
+
+/* --- MENU FOOTER --- */
+.menu-footer {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.privacy-link {
+    color: #888;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.privacy-link:hover {
+    color: #667eea;
+}
+
+/* --- GAME SCREEN --- */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.game-header h1 {
+    font-size: 1.5rem;
+    color: #333;
+    margin: 0;
+}
+
+.back-btn {
+    padding: 8px 15px;
+    font-size: 1rem;
+    background: #f5f5f5;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.back-btn:hover {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.current-difficulty {
+    font-size: 0.9rem;
+    color: #667eea;
+    font-weight: bold;
+    padding: 5px 12px;
+    background: #e8e8ff;
+    border-radius: 20px;
+}
+
+/* Game stats */
+.game-stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 15px;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.stat-icon {
+    font-size: 1.2rem;
+}
+
+/* --- NADPIS (starý, pre kompatibilitu) --- */
+header h1 {
+    text-align: center;
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* --- OVLÁDACIE PRVKY (už nepotrebujeme, ale nechám) --- */
+.controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Štýl pre select (dropdown) */
+#difficulty {
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border: 2px solid #667eea;
+    border-radius: 10px;
+    background: white;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Štýl pre tlačidlá */
+button {
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;  /* Plynulá animácia */
+}
+
+#new-game-btn {
+    background: #667eea;
+    color: white;
+}
+
+#new-game-btn:hover {
+    background: #5a6fd6;
+    transform: scale(1.05);     /* Zväčší sa pri hover */
+}
+
+/* --- TIMER --- */
+.timer {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#timer-display {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #667eea;
+    font-family: 'Courier New', monospace; /* Monospace pre čísla */
+}
+
+/* Mistakes display */
+.mistakes {
+    margin-left: 20px;
+    font-size: 1.5rem;
+    color: #c62828;
+}
+
+#mistake-display {
+    font-weight: bold;
+    font-family: 'Courier New', monospace;
+}
+
+/* --- SUDOKU MRIEŽKA (9x9) --- */
+.sudoku-grid {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr); /* 9 rovnakých stĺpcov */
+    grid-template-rows: repeat(9, 1fr);    /* 9 rovnakých riadkov */
+    gap: 2px;                              /* Medzera medzi políčkami */
+    background: #333;                      /* Farba mriežky */
+    border: 3px solid #333;
+    border-radius: 10px;
+    overflow: hidden;                      /* Zaobli vnútorné rohy */
+    margin-bottom: 20px;
+    aspect-ratio: 1;                       /* Vždy štvorec */
+}
+
+/* --- JEDNOTLIVÉ POLÍČKO --- */
+.cell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    font-size: 1.8rem;          /* VEĽKÉ PÍSMO PRE BABKU! */
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+/* Políčko pri hover */
+.cell:hover {
+    background: #e8e8ff;
+}
+
+/* Vybrané políčko */
+.cell.selected {
+    background: #c5cae9;
+}
+
+/* Políčka v rovnakom riadku/stĺpci/boxe */
+.cell.related {
+    background: #e3f2fd;
+}
+
+/* Vybrané políčko má prednosť */
+.cell.selected.related {
+    background: #c5cae9;
+}
+
+/* Fixné políčko (zadané, nemôže sa meniť) */
+.cell.fixed {
+    background: #f0f0f0;
+    color: #333;
+    cursor: not-allowed;
+}
+
+/* Fixné políčko v related oblasti */
+.cell.fixed.related {
+    background: #e0e0e0;
+}
+
+/* Políčko s chybou */
+.cell.error {
+    background: #ffcdd2;
+    color: #c62828;
+}
+
+/* Zvýraznenie rovnakého čísla */
+.cell.highlight {
+    background: #fff9c4;
+}
+
+/* --- HRUBŠIE ČIARY PRE 3x3 BLOKY --- */
+/* Pravá strana 3. a 6. stĺpca */
+.cell:nth-child(3n):not(:nth-child(9n)) {
+    border-right: 3px solid #333;
+}
+
+/* Spodná strana každého 3. riadku */
+.cell:nth-child(n+19):nth-child(-n+27),
+.cell:nth-child(n+46):nth-child(-n+54) {
+    border-bottom: 3px solid #333;
+}
+
+/* --- GAME CONTENT LAYOUT --- */
+.game-content {
+    display: block; /* Default: mobile - všetko pod sebou */
+}
+
+.game-board {
+    margin-bottom: 20px;
+}
+
+.game-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* --- ČÍSLOVNÍK (1-9) --- */
+.number-pad {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 stĺpcov */
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.num-btn {
+    padding: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: #f5f5f5;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+}
+
+.num-btn:hover {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.num-btn:active {
+    transform: scale(0.95);
+}
+
+/* Tlačidlo na mazanie */
+.erase-btn {
+    background: #ffebee;
+    border-color: #ef9a9a;
+    color: #c62828;
+}
+
+.erase-btn:hover {
+    background: #c62828;
+    color: white;
+}
+
+/* Erase button spans full width in 3-column layout */
+@media (min-width: 601px) {
+    .number-pad {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .erase-btn {
+        grid-column: span 3;
+    }
+}
+
+/* Vyčerpané číslo (9x použité) */
+.num-btn.exhausted {
+    background: #9e9e9e;
+    color: #616161;
+    border-color: #757575;
+    opacity: 0.6;
+}
+
+.num-btn.exhausted:hover {
+    background: #757575;
+    color: #424242;
+}
+
+/* --- PENCIL MODE --- */
+.pencil-toggle {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#pencil-btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background: #f5f5f5;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#pencil-btn.active {
+    background: #ff9800;
+    color: white;
+    border-color: #ff9800;
+}
+
+#pencil-btn:hover {
+    transform: scale(1.05);
+}
+
+/* Pencil marks v políčku */
+.cell.has-pencil {
+    padding: 2px;
+}
+
+.pencil-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 100%;
+    height: 100%;
+    gap: 0;
+    align-content: start;
+    justify-content: start;
+}
+
+.pencil-num {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #667eea;
+    font-weight: 600;
+    line-height: 1;
+}
+
+/* --- AKČNÉ TLAČIDLÁ --- */
+.actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;            /* Zalomí sa na mobile */
+}
+
+#check-btn {
+    background: #4caf50;
+    color: white;
+}
+
+#check-btn:hover {
+    background: #43a047;
+}
+
+#hint-btn {
+    background: #ff9800;
+    color: white;
+}
+
+#hint-btn:hover {
+    background: #fb8c00;
+}
+
+#undo-btn {
+    background: #607d8b;
+    color: white;
+}
+
+#undo-btn:hover {
+    background: #546e7a;
+}
+
+#solve-btn {
+    background: #9c27b0;
+    color: white;
+}
+
+#solve-btn:hover {
+    background: #8e24aa;
+}
+
+/* --- RESPONZÍVNY DIZAJN --- */
+
+/* MOBILE (default - do 600px) */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 15px;
+        border-radius: 15px;
+    }
+    
+    .menu-container header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .game-header h1 {
+        font-size: 1.3rem;
+    }
+    
+    .cell {
+        font-size: 1.2rem;
+    }
+    
+    .num-btn {
+        padding: 12px;
+        font-size: 1.2rem;
+    }
+    
+    button {
+        padding: 10px 16px;
+        font-size: 1rem;
+    }
+    
+    .game-stats {
+        gap: 20px;
+    }
+    
+    .stat {
+        font-size: 1.1rem;
+    }
+}
+
+/* TABLET (600px - 1024px) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .container {
+        max-width: 700px;
+        padding: 25px;
+    }
+    
+    .game-container {
+        max-width: 850px;
+    }
+    
+    /* Tablet game layout */
+    .game-content {
+        display: grid;
+        grid-template-columns: 1fr 180px;
+        gap: 25px;
+        align-items: start;
+    }
+    
+    .game-board {
+        margin-bottom: 0;
+    }
+    
+    .sudoku-grid {
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .cell {
+        font-size: 1.6rem;
+    }
+    
+    /* Controls na pravej strane */
+    .game-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .pencil-toggle {
+        margin-bottom: 5px;
+    }
+    
+    #pencil-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+    
+    .number-pad {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .num-btn {
+        padding: 14px 10px;
+        font-size: 1.3rem;
+    }
+    
+    .actions {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .actions button {
+        width: 100%;
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+}
+
+/* DESKTOP (nad 1024px) */
+@media (min-width: 1025px) {
+    body {
+        padding: 40px;
+    }
+    
+    .container {
+        max-width: 600px;
+        padding: 40px;
+    }
+    
+    .game-container {
+        max-width: 950px;
+    }
+    
+    /* Desktop game layout - side by side */
+    .game-content {
+        display: grid;
+        grid-template-columns: 1fr 220px;
+        gap: 35px;
+        align-items: start;
+    }
+    
+    .game-board {
+        margin-bottom: 0;
+    }
+    
+    .sudoku-grid {
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .cell {
+        font-size: 2rem;
+    }
+    
+    /* Controls na pravej strane */
+    .game-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        position: sticky;
+        top: 20px;
+    }
+    
+    .pencil-toggle {
+        margin-bottom: 5px;
+    }
+    
+    #pencil-btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 1rem;
+    }
+    
+    .number-pad {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .num-btn {
+        padding: 18px 12px;
+        font-size: 1.4rem;
+    }
+    
+    .actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .actions button {
+        width: 100%;
+        padding: 14px;
+        font-size: 1rem;
+    }
+}
+
+/* --- VÝHERNÁ ANIMÁCIA --- */
+@keyframes celebrate {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.sudoku-grid.won {
+    animation: celebrate 0.5s ease 3;
+    border-color: #4caf50;
+}
