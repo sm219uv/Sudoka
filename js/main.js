@@ -59,17 +59,72 @@ document.addEventListener('DOMContentLoaded', () => {
 function setupSupportBanner() {
     const banner = document.getElementById('support-banner');
     const closeBtn = document.getElementById('close-support');
+    const watchAdBtn = document.getElementById('watch-ad-btn');
     
-    // Skontroluj či používateľ už zatvoril banner
+    // Check if user closed the banner
     if (localStorage.getItem('supportBannerClosed') === 'true') {
         banner.classList.add('hidden');
     }
     
-    // Zatvorenie bannera
+    // Close banner
     closeBtn.addEventListener('click', () => {
         banner.classList.add('hidden');
         localStorage.setItem('supportBannerClosed', 'true');
     });
+    
+    // Watch ad button
+    watchAdBtn.addEventListener('click', () => {
+        showRewardedAd();
+    });
+}
+
+/**
+ * Show rewarded ad
+ * Replace this with actual ad network integration (AdMob, Unity Ads, etc.)
+ */
+function showRewardedAd() {
+    // Placeholder - shows a thank you message
+    // TODO: Integrate with actual ad network like Google AdMob
+    
+    const adOverlay = document.createElement('div');
+    adOverlay.className = 'ad-overlay';
+    adOverlay.innerHTML = `
+        <div class="ad-container">
+            <div class="ad-content">
+                <h2>📺 Ad Placeholder</h2>
+                <p>Thank you for wanting to support!</p>
+                <p class="ad-timer">Ad will close in <span id="ad-countdown">5</span>s</p>
+                <div class="ad-progress">
+                    <div class="ad-progress-bar" id="ad-progress-bar"></div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.appendChild(adOverlay);
+    
+    // Countdown timer
+    let seconds = 5;
+    const countdown = document.getElementById('ad-countdown');
+    const progressBar = document.getElementById('ad-progress-bar');
+    
+    const timer = setInterval(() => {
+        seconds--;
+        countdown.textContent = seconds;
+        progressBar.style.width = ((5 - seconds) / 5 * 100) + '%';
+        
+        if (seconds <= 0) {
+            clearInterval(timer);
+            adOverlay.remove();
+            
+            // Show thank you message
+            alert('🙏 Thank you for your support!');
+            
+            // Track ad views
+            const adViews = parseInt(localStorage.getItem('adViews') || '0') + 1;
+            localStorage.setItem('adViews', adViews.toString());
+        }
+    }, 1000);
 }
 
 /**
